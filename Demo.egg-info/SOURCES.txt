@@ -1,8 +1,12 @@
 setup.py
-Apps/__init__.py
-Apps/FHIaims/Molecule.py
-Apps/FHIaims/__init__.py
-Apps/GULP/__init__.py
+AppOutputExtractor/OutputExtractor.py
+AppOutputExtractor/__init__.py
+AppOutputExtractor/FHIaims/FHIaimsMolecule.py
+AppOutputExtractor/FHIaims/FHIaimsOutputExtractor.py
+AppOutputExtractor/FHIaims/SystemInfo.py
+AppOutputExtractor/FHIaims/__init__.py
+AppOutputExtractor/FHIaims/test.py
+AppOutputExtractor/GULP/__init__.py
 Demo.egg-info/PKG-INFO
 Demo.egg-info/SOURCES.txt
 Demo.egg-info/dependency_links.txt

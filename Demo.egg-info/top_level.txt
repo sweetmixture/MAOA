@@ -1,2 +1,2 @@
-Apps
+AppOutputExtractor
 NonPeriodic
