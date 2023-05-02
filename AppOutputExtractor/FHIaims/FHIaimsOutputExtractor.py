@@ -59,6 +59,20 @@ class extractor(BaseExtractor):
 		#print('geometry output: {}'.format(self.output_geometry_filepath)) 
 		return [self.output_filepath,self.input_geometry_filepath,self.output_geometry_filepath]
 
+	def get_input_molecule(self):
+		checker = self.check_filepaths()[1]
+		if checker:
+			return self.input_geometry
+		else:
+			print('input geometry is not loaded!')
+
+	def get_output_molecule(self):
+		checker = self.check_filepaths()[2]
+		if checker:
+			return self.output_geometry
+		else:
+			print('output geometry is not loaded!')
+
 	'''
 		Interaction with app output file
 	'''
