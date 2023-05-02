@@ -2,6 +2,7 @@
 #from Demo.AppOutputAnalysis.AppOutputExtractor.FHIaims import FHIaimsOutputExtractor as fe
 
 import AppOutputExtractor.FHIaims.FHIaimsOutputExtractor as fe
+from AppOutputExtractor.FHIaims.FHIaimsMolecule import calculate_rmsd_molecules
 
 
 file_root = '/Users/woongkyujee/Desktop/Python/FHI22_samples/runs/run_1'
@@ -38,3 +39,14 @@ te.output_geometry.show_info()
 #
 #target = collect_all(te)
 #print(target)
+
+input_mol = te.get_input_molecule()
+output_mol = te.get_output_molecule()
+
+print('input')
+input_mol.show_info()
+print('output')
+output_mol.show_info()
+print('rmsd')
+rmsd = calculate_rmsd_molecules(input_mol,output_mol)
+print(rmsd)
