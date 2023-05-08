@@ -39,6 +39,13 @@ def get_lines(tarfile,line_start,line_end):
 
 	return lines[line_start-1:line_end-1]
 
+def time_to_seconds(time_str):
+	parts = time_str.split(':')
+	hours = int(parts[0])
+	minutes = int(parts[1])
+	seconds = float(parts[2])
+	total_seconds = hours * 3600 + minutes * 60 + seconds
+	return total_seconds
 
 if __name__ == '__main__':
 

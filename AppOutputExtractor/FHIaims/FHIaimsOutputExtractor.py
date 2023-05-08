@@ -57,6 +57,9 @@ class extractor(BaseExtractor):
 		#print('App output     : {}'.format(self.output_filepath))
 		#print('geometry input : {}'.format(self.input_geometry_filepath))
 		#print('geometry output: {}'.format(self.output_geometry_filepath)) 
+		'''
+			field: (0) AppOutput (1) InputGeometry (2) OutputGeometry
+		'''
 		return [self.output_filepath,self.input_geometry_filepath,self.output_geometry_filepath]
 
 	def get_input_molecule(self):
@@ -95,14 +98,26 @@ class extractor(BaseExtractor):
 		self.shell.set_tarfile(self.output_filepath)
 		cmd = self.shell.pipe(self.shell.grep(self.patterns['APP_RUNTIME']['pattern']),self.shell.awk(self.patterns['APP_RUNTIME']['wtime_token']))
 		target = self.shell.execute(cmd)	#!!!
-		return target
+
+		try:
+			target = float(target)
+			return target
+		except:
+			print('failed to get calculation wtime')
+			return None
 
 	def check_parallel_task(self):
 		# used cpus
 		self.shell.set_tarfile(self.output_filepath)
 		cmd = self.shell.pipe(self.shell.grep(self.patterns['APP_RESOURCE_USED']['pattern']),self.shell.awk(self.patterns['APP_RESOURCE_USED']['token']))
 		target = self.shell.execute(cmd)	#!!!
-		return target
+
+		try:
+			target = int(target)
+			return target
+		except:
+			print('failed to get parallel task number, recheck the app output file')
+			return None
 	'''
 		Loading SCF converged blocks ... possibly useful for further app output collation 	
 	'''
@@ -195,7 +210,10 @@ class extractor(BaseExtractor):
 		return target
 
 	def get_homolumo(self,block=-1):
-		
+
+		'''
+			field: (0) HOMO (1) LUMO (2) HOMO-LUMO
+		'''		
 		target = []
 
 		# HOMO
