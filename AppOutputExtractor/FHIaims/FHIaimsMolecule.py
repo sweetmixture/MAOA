@@ -66,9 +66,12 @@ def calculate_rmsd_molecules(moleculeA,moleculeB):
 			dev = np.linalg.norm(cartA - cartB)
 			rmsd = rmsd + dev		
 
-		rmsd = rmsd/(float(moleculeA.get_number_of_atoms())*3.)
-
-		return rmsd
+		try:
+			rmsd = rmsd/(float(moleculeA.get_number_of_atoms())*3.)
+			return rmsd
+		except ZeroDivisionError as e:
+			print(e)
+			return None
 
 
 '''
